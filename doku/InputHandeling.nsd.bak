@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:nsd="http://structorizer.fisch.lu/" version="3.25-11" preRepeat="jusqu'à " postFor="à" preReturn="return" postForIn=" en " preWhile="tant que " output="écrire" input="lire " preFor="pour " preExit="exit" preLeave="leave" ignoreCase="true" preForIn="pour " stepFor=", pas = " text="&#34;InputHandeling&#34;" comment="&#34;&#34;" color="ffffff" type="program" style="nice">
+	<children>
+		<instruction text="&#34;Datei öffnen&#34;" comment="&#34;&#34;" color="ffffff" rotated="0" disabled="0"></instruction>
+		<instruction text="&#34;row variable anlegen und mit 1 initalisieren&#34;" comment="&#34;&#34;" color="ffffff" rotated="0" disabled="0"></instruction>
+		<alternative text="&#34;ist filestatus 00?&#34;" comment="&#34;&#34;" color="ffffff" disabled="0">
+			<qTrue>
+				<while text="&#34;solange FILE-EOF nicht 1 ist&#34;" comment="&#34;&#34;" color="ffff80" disabled="0">
+					<qWhile>
+						<alternative text="&#34;ist datei zuende?&#34;" comment="&#34;&#34;" color="ffffff" disabled="0">
+							<qTrue>
+								<instruction text="&#34;FILE-EOF auf 1 setzen&#34;" comment="&#34;&#34;" color="ffffff" rotated="0" disabled="0"></instruction>
+							</qTrue>
+							<qFalse>
+								<instruction text="&#34;nächste zeile lesen&#34;" comment="&#34;&#34;" color="ffffff" rotated="0" disabled="0"></instruction>
+								<case text="&#34;zeile startet mit&#34;,&#34;dim=&#34;,&#34;n=&#34;,&#34;e=&#34;,&#34;x=&#34;,&#34;sonst&#34;" comment="&#34;&#34;" color="80ff80" disabled="0">
+									<qCase>
+										<instruction text="&#34;dim= in der zeile mit spaces ersetzten &#34;" comment="&#34;&#34;" color="ffffff" rotated="0" disabled="0"></instruction>
+										<instruction text="&#34;zeile in einen numerischen wert umwandeln&#34;,&#34; und in dim speichern&#34;" comment="&#34;&#34;" color="ffffff" rotated="0" disabled="0"></instruction>
+										<alternative text="&#34;ist dim = 0&#34;" comment="&#34;&#34;" color="80ffff" disabled="0">
+											<qTrue>
+												<instruction text="&#34;fehler ausgeben&#34;" comment="&#34;&#34;" color="ffffff" rotated="0" disabled="0"></instruction>
+												<instruction text="&#34;programm stoppen&#34;" comment="&#34;&#34;" color="ffffff" rotated="0" disabled="0"></instruction>
+											</qTrue>
+											<qFalse>
+											</qFalse>
+										</alternative>
+									</qCase>
+									<qCase>
+										<instruction text="&#34;n= in der zeile mit spaces ersetzten &#34;" comment="&#34;&#34;" color="ffffff" rotated="0" disabled="0"></instruction>
+										<instruction text="&#34;zeile in einen numerischen wert umwandeln&#34;,&#34; und in n speichern&#34;" comment="&#34;&#34;" color="ffffff" rotated="0" disabled="0"></instruction>
+										<alternative text="&#34;ist dim = 0&#34;" comment="" color="80ffff" disabled="0">
+											<qTrue>
+												<instruction text="&#34;fehler ausgeben&#34;" comment="" color="ffffff" rotated="0" disabled="0"></instruction>
+												<instruction text="&#34;programm stoppen&#34;" comment="" color="ffffff" rotated="0" disabled="0"></instruction>
+											</qTrue>
+											<qFalse>
+											</qFalse>
+										</alternative>
+									</qCase>
+									<qCase>
+										<instruction text="&#34;e= in der zeile mit spaces ersetzten &#34;" comment="&#34;&#34;" color="ffffff" rotated="0" disabled="0"></instruction>
+										<instruction text="&#34;zeile in einen numerischen wert umwandeln&#34;,&#34; und in epsilon speichern&#34;" comment="&#34;&#34;" color="ffffff" rotated="0" disabled="0"></instruction>
+										<alternative text="&#34;ist dim = 0&#34;" comment="" color="80ffff" disabled="0">
+											<qTrue>
+												<instruction text="&#34;fehler ausgeben&#34;" comment="" color="ffffff" rotated="0" disabled="0"></instruction>
+												<instruction text="&#34;programm stoppen&#34;" comment="" color="ffffff" rotated="0" disabled="0"></instruction>
+											</qTrue>
+											<qFalse>
+											</qFalse>
+										</alternative>
+									</qCase>
+									<qCase>
+										<instruction text="&#34;x= in der zeile mit spaces ersetzten &#34;" comment="&#34;&#34;" color="ffffff" rotated="0" disabled="0"></instruction>
+										<instruction text="&#34;vector-pointer variable anlegen und mit 0 initialisieren&#34;" comment="&#34;&#34;" color="ffffff" rotated="0" disabled="0"></instruction>
+										<instruction text="&#34;counter variable anlegen und mit 0 initialisieren&#34;" comment="&#34;&#34;" color="ffffff" rotated="0" disabled="0"></instruction>
+										<while text="&#34;solange vector-pointer größer als die dimension&#34;,&#34; des start vectors ist&#34;" comment="&#34;&#34;" color="0080ff" disabled="0">
+											<qWhile>
+												<instruction text="&#34;zeile bei leerzeichen splitten (mit hilfe des pointers) &#34;,&#34;und wert in dummy speichern&#34;" comment="&#34;&#34;" color="ffffff" rotated="0" disabled="0"></instruction>
+												<instruction text="&#34;dummy in zahl umwandeln und an &#34;,&#34;stelle counter in den startvector speichern&#34;" comment="&#34;&#34;" color="ffffff" rotated="0" disabled="0"></instruction>
+												<instruction text="&#34;counter um eins erhöhen&#34;" comment="&#34;&#34;" color="ffffff" rotated="0" disabled="0"></instruction>
+											</qWhile>
+										</while>
+									</qCase>
+									<qCase>
+										<instruction text="&#34;vector-pointer variable anlegen und mit 0 initialisieren&#34;" comment="" color="ffffff" rotated="0" disabled="0"></instruction>
+										<instruction text="&#34;counter variable anlegen und mit 0 initialisieren&#34;" comment="" color="ffffff" rotated="0" disabled="0"></instruction>
+										<while text="&#34;solange vector-pointer größer als die dimension des start vectors ist&#34;" comment="" color="0080ff" disabled="0">
+											<qWhile>
+												<instruction text="&#34;zeile bei leerzeichen splitten (mit hilfe des pointers) &#34;,&#34;und wert in dummy speichern&#34;" comment="" color="ffffff" rotated="0" disabled="0"></instruction>
+												<instruction text="&#34;dummy in zahl umwandeln und an &#34;,&#34;stelle row, counter in die start matrix speichern&#34;" comment="&#34;&#34;" color="ffffff" rotated="0" disabled="0"></instruction>
+												<instruction text="&#34;counter um eins erhöhen&#34;" comment="" color="ffffff" rotated="0" disabled="0"></instruction>
+											</qWhile>
+										</while>
+										<instruction text="&#34;row um eins erhöhen&#34;" comment="&#34;&#34;" color="ffffff" rotated="0" disabled="0"></instruction>
+									</qCase>
+								</case>
+							</qFalse>
+						</alternative>
+					</qWhile>
+				</while>
+				<instruction text="&#34;datei schließen&#34;" comment="&#34;&#34;" color="ffffff" rotated="0" disabled="0"></instruction>
+			</qTrue>
+			<qFalse>
+				<instruction text="&#34;fehler ausgeben&#34;" comment="&#34;&#34;" color="ffffff" rotated="0" disabled="0"></instruction>
+				<instruction text="&#34;datei schließen&#34;" comment="&#34;&#34;" color="ffffff" rotated="0" disabled="0"></instruction>
+				<instruction text="&#34;program stoppen&#34;" comment="&#34;&#34;" color="ffffff" rotated="0" disabled="0"></instruction>
+			</qFalse>
+		</alternative>
+	</children>
+</root>

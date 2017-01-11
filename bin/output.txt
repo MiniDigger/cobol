@@ -1,0 +1,7 @@
+==========
+Matrix:
+Start Vektor:
+Erwartungswert:
+10
+WS-RET-EW
+==========
