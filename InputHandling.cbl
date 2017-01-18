@@ -148,7 +148,9 @@
              UNSTRING INPUT-LINE DELIMITED BY SPACES INTO DUMMY
              WITH POINTER VECTOR-POINTER END-UNSTRING
       *       IF DUMMY IS NUMERIC THEN
-             MOVE FUNCTION NUMVAL(DUMMY) TO XI(COUNTER)
+             INITIALIZE XI(COUNTER)
+             DISPLAY "READ " DUMMY
+             MOVE FUNCTION NUMVAL-C(DUMMY) TO XI(COUNTER)
       *       ELSE
       *          DISPLAY "Error: xi " COUNTER " " DUMMY " ist nicht"
       *          " numerisch!"

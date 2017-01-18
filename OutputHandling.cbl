@@ -59,8 +59,15 @@
             MOVE 1 TO I
             MOVE SPACE TO PRINT
             PERFORM UNTIL I > DIM-I
-                DISPLAY XI-DISPLAY(I) " " I
-                STRING XI-DISPLAY(I) " " INTO PRINT WITH POINTER P
+                IF XI(I) IS NUMERIC THEN
+                    DISPLAY "YES"
+                ELSE DISPLAY "NO!?!"
+                END-IF
+
+                DISPLAY XI(I) " " I
+                MOVE XI(I) TO WS-NUM
+                DISPLAY WS-NUM
+                STRING WS-NUM " " INTO PRINT WITH POINTER P
                 ADD 1 TO I
             END-PERFORM
             WRITE OUTPUT-FILE FROM PRINT
