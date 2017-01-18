@@ -144,7 +144,7 @@
            MOVE 1 TO COUNTER
       * splittet den string bei leerzeichen ein
       * iteriert dann durch alle parts
-          PERFORM UNTIL VECTOR-POINTER > DIM-I
+          PERFORM UNTIL COUNTER > DIM-I
              UNSTRING INPUT-LINE DELIMITED BY SPACES INTO DUMMY
              WITH POINTER VECTOR-POINTER END-UNSTRING
       *       IF DUMMY IS NUMERIC THEN

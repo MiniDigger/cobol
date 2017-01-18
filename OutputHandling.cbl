@@ -21,7 +21,7 @@
        WORKING-STORAGE SECTION.
            01 FILE-STATUS PIC XX.
            01 COUNTER PIC 9(4) COMP-3 VALUE 1.
-           01 WS-RET-EW PIC S9(06)V9(16).
+           01 WS-NUM PIC S9(06)V9(16).
            01 PRINT PIC X(200).
            01 PRETTY-NUM PIC -Z(8)9.9999.
            01 I PIC 9(4).
@@ -59,8 +59,9 @@
             MOVE 1 TO I
             MOVE SPACE TO PRINT
             PERFORM UNTIL I > DIM-I
-                MOVE XI(I) TO PRETTY-NUM
-                  STRING PRETTY-NUM " " INTO PRINT WITH POINTER P
+                DISPLAY XI-DISPLAY(I) " " I
+                STRING XI-DISPLAY(I) " " INTO PRINT WITH POINTER P
+                ADD 1 TO I
             END-PERFORM
             WRITE OUTPUT-FILE FROM PRINT
 
