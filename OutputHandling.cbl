@@ -28,10 +28,10 @@
            01 J PIC 9(4).
            01 P PIC 9(4).
        LINKAGE SECTION.
-           COPY "VectorDim.cpy".
-           COPY "Abbruch.cpy".
            COPY "InputMatrix.cpy".
-       PROCEDURE DIVISION USING ABBRUCH INPUT-VEKTOR MATRIX.
+           COPY "Abbruch.cpy".
+           COPY "VectorDim.cpy".
+       PROCEDURE DIVISION USING INPUT-VEKTOR ABBRUCH MATRIX.
        MAIN-PROCEDURE.
             OPEN OUTPUT OUTPUTF
             IF FILE-STATUS NOT = '00'
@@ -58,24 +58,19 @@
             WRITE OUTPUT-FILE FROM "Start Vektor:"
             MOVE 1 TO I
             MOVE SPACE TO PRINT
+            MOVE 1 TO P
             PERFORM UNTIL I > DIM-I
-                IF XI(I) IS NUMERIC THEN
-                    DISPLAY "YES"
-                ELSE DISPLAY "NO!?!"
-                END-IF
-
-                DISPLAY XI(I) " " I
-                MOVE XI(I) TO WS-NUM
-                DISPLAY WS-NUM
-                STRING WS-NUM " " INTO PRINT WITH POINTER P
+                MOVE XI-ORIG(I) TO WS-NUM
+                MOVE WS-NUM TO PRETTY-NUM
+                STRING PRETTY-NUM " " INTO PRINT WITH POINTER P
                 ADD 1 TO I
             END-PERFORM
             WRITE OUTPUT-FILE FROM PRINT
 
             WRITE OUTPUT-FILE FROM "Erwartungswert:"
-            MOVE "test" TO PRINT
+            MOVE RET-EW TO PRETTY-NUM
+            MOVE PRETTY-NUM TO PRINT
             WRITE OUTPUT-FILE FROM PRINT
-            WRITE OUTPUT-FILE FROM "WS-RET-EW"
             WRITE OUTPUT-FILE FROM "=========="
 
             IF FILE-STATUS NOT = '00'

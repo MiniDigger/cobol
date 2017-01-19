@@ -21,8 +21,8 @@
                05 I PIC 9(04) COMP-3.
            01 SCALAR PIC 9(09)V9(16) COMP-3.
        LINKAGE SECTION.
-           COPY "VectorDim.cpy".
            COPY "CRS.cpy".
+           COPY "VectorDim.cpy".
            COPY "Abbruch.cpy".
        PROCEDURE DIVISION
             USING CRS-VALS CRS-COLS CRS-ROW-PTR INPUT-VEKTOR ABBRUCH.

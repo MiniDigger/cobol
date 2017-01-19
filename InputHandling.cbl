@@ -28,11 +28,12 @@
            01 VECTOR-POINTER PIC 999.
            01 ROW PIC 9999 VALUE 1.
        LINKAGE SECTION.
-           COPY "VectorDim.cpy".
-           COPY "Abbruch.cpy".
            COPY "InputMatrix.cpy".
+           COPY "Abbruch.cpy".
+           COPY "VectorDim.cpy".
        PROCEDURE DIVISION USING INPUT-VEKTOR ABBRUCH MATRIX.
        MAIN-PROCEDURE.
+           INITIALIZE INPUT-VEKTOR
            OPEN INPUT INPUTF
            IF FILE-STATUS NOT = '00'
                 THEN PERFORM HANDLE-ERROR STOP RUN.
@@ -148,9 +149,8 @@
              UNSTRING INPUT-LINE DELIMITED BY SPACES INTO DUMMY
              WITH POINTER VECTOR-POINTER END-UNSTRING
       *       IF DUMMY IS NUMERIC THEN
-             INITIALIZE XI(COUNTER)
-             DISPLAY "READ " DUMMY
              MOVE FUNCTION NUMVAL-C(DUMMY) TO XI(COUNTER)
+             MOVE XI(COUNTER) TO XI-ORIG(COUNTER)
       *       ELSE
       *          DISPLAY "Error: xi " COUNTER " " DUMMY " ist nicht"
       *          " numerisch!"
