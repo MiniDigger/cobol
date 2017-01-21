@@ -18,7 +18,7 @@
             CALL "InputHandling" USING INPUT-VEKTOR, ABBRUCH, MATRIX
 
             DISPLAY "Validating input..."
-      *      CALL "Validation" USING MATRIX, ABBRUCH
+            CALL "Validation" USING MATRIX, ABBRUCH
 
             DISPLAY "Build CRS..."
             CALL "CompressedRowStorage" USING CRS-VALS, CRS-COLS,
