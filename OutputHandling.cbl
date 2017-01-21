@@ -33,7 +33,13 @@
            COPY "VectorDim.cpy".
        PROCEDURE DIVISION USING INPUT-VEKTOR ABBRUCH MATRIX.
        MAIN-PROCEDURE.
+           IF ERRORMSG = "CLEAR" THEN
             OPEN OUTPUT OUTPUTF
+            CLOSE OUTPUTF
+            EXIT PROGRAM
+           END-IF
+
+            OPEN EXTEND OUTPUTF
             IF FILE-STATUS NOT = '00'
                THEN PERFORM HANDLE-ERROR STOP RUN
             END-IF

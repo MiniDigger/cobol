@@ -44,11 +44,15 @@
                   NOT AT END PERFORM READLINE
               END-READ
            END-PERFORM
+           MOVE 0 TO FILE-EOF
+           MOVE 1 TO ROW
+           MOVE 1 TO VECTOR-POINTER
            CLOSE INPUTF
            EXIT PROGRAM
            .
       * liest eine zeile und entscheidet wie sie weiter verarbeitet werden soll
        READLINE.
+           DISPLAY INPUT-LINE
            MOVE 0 TO OPTION-FOUND
       * werte für dim, n, epsilon und den start vektor
            MOVE 0 TO COUNTER
