@@ -27,16 +27,19 @@
            01 OPTION-FOUND PIC 9.
            01 VECTOR-POINTER PIC 999.
            01 ROW PIC 9999 VALUE 1.
+           01 SKIP-COPY PIC 999 VALUE 0.
        LINKAGE SECTION.
            COPY "InputMatrix.cpy".
            COPY "Abbruch.cpy".
            COPY "VectorDim.cpy".
-       PROCEDURE DIVISION USING INPUT-VEKTOR ABBRUCH MATRIX.
+       PROCEDURE DIVISION USING INPUT-VEKTOR ABBRUCH MATRIX SKIP.
        MAIN-PROCEDURE.
            INITIALIZE INPUT-VEKTOR
            OPEN INPUT INPUTF
            IF FILE-STATUS NOT = '00'
                 THEN PERFORM HANDLE-ERROR STOP RUN.
+
+           MOVE SKIP TO SKIP-COPY
       *  jede zeile einzeln einlesen
            PERFORM UNTIL FILE-EOF=1
               READ INPUTF
@@ -47,6 +50,7 @@
            MOVE 0 TO FILE-EOF
            MOVE 1 TO ROW
            MOVE 1 TO VECTOR-POINTER
+           ADD 1 TO SKIP
            CLOSE INPUTF
            EXIT PROGRAM
            .
@@ -54,6 +58,14 @@
        READLINE.
            DISPLAY INPUT-LINE
            MOVE 0 TO OPTION-FOUND
+
+           MOVE 0 TO COUNTER
+           INSPECT INPUT-LINE TALLYING COUNTER FOR LEADING "==========".
+           IF COUNTER > 0 THEN PERFORM FOUND-NEW MOVE 1 TO OPTION-FOUND
+           END-IF
+      * solange skippen bis wir am richtigen record sind
+           IF SKIP-COPY NOT = 0 THEN MOVE 1 TO OPTION-FOUND END-IF
+
       * werte für dim, n, epsilon und den start vektor
            MOVE 0 TO COUNTER
            INSPECT INPUT-LINE TALLYING COUNTER FOR LEADING "dim=".
@@ -70,10 +82,6 @@
            MOVE 0 TO COUNTER
            INSPECT INPUT-LINE TALLYING COUNTER FOR LEADING "x=".
            IF COUNTER > 0 THEN PERFORM FOUND-X MOVE 1 TO OPTION-FOUND
-           END-IF
-           MOVE 0 TO COUNTER
-           INSPECT INPUT-LINE TALLYING COUNTER FOR LEADING "==========".
-           IF COUNTER > 0 THEN PERFORM FOUND-NEW MOVE 1 TO OPTION-FOUND
            END-IF
       * else: eine weitere zeile der input matrix
            IF OPTION-FOUND = 0
@@ -172,11 +180,13 @@
              ADD 1 TO COUNTER
            END-PERFORM
            .
-      * resetted alles fuer die naeste runde
+      * ende einer input zeile
        FOUND-NEW.
-           DISPLAY "Lese naesten input..."
-      * TODO complete the loop
-           MOVE 1 TO FILE-EOF
+           DISPLAY "zuende gelese"
+           SUBTRACT 1 FROM SKIP-COPY
+           DISPLAY SKIP-COPY
+           CLOSE INPUTF
+           EXIT PROGRAM
            .
       * gibt einige fehlermeldungen fuer haeufige file errors aus
        HANDLE-ERROR.

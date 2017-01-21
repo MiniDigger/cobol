@@ -31,7 +31,8 @@
             INITIALIZE INPUT-VEKTOR
 
             DISPLAY "Processing input..."
-            CALL "InputHandling" USING INPUT-VEKTOR, ABBRUCH, MATRIX
+            CALL "InputHandling" USING INPUT-VEKTOR, ABBRUCH, MATRIX,
+            SKIP
 
             IF ERRORMSG = "FINE" THEN
             DISPLAY "Validating input..."
@@ -54,6 +55,7 @@
             CALL "OutputHandling" USING INPUT-VEKTOR, ABBRUCH, MATRIX
 
             ADD 1 TO END-DATA
+            ADD 1 TO SKIP
             DISPLAY "================================="
            END-PERFORM
 
