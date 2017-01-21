@@ -4,5 +4,3 @@
                05 VECTOR OCCURS 1 TO 1000 DEPENDING ON DIM-I.
                    10 XI PIC S9(06)V9(16) COMP-3.
                    10 XI-ORIG PIC S9(06)V9(16) COMP-3.
-
-           01 SKIP PIC 999 VALUE 0.

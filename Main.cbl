@@ -8,31 +8,16 @@
        PROGRAM-ID. MAIN.
        DATA DIVISION.
        WORKING-STORAGE SECTION.
-           01 END-DATA PIC 9 VALUE 0.
            COPY "CRS.cpy".
            COPY "Abbruch.cpy".
            COPY "VectorDim.cpy".
            COPY "InputMatrix.cpy".
-           COPY "OutputVector.cpy".
        PROCEDURE DIVISION.
        MAIN-PROCEDURE.
-      * output datei leeren
-           MOVE "CLEAR" TO ERRORMSG
-           CALL "OutputHandling" USING INPUT-VEKTOR, ABBRUCH, MATRIX
-           MOVE "FINE" TO ERRORMSG
-
-           PERFORM UNTIL END-DATA = 2
-            DISPLAY "================================="
             MOVE "FINE" TO ERRORMSG
-            INITIALIZE CRS-COLS
-            INITIALIZE CRS-ROW-PTR
-            INITIALIZE MATRIX
-            INITIALIZE OUT-VEKTOR
-            INITIALIZE INPUT-VEKTOR
 
             DISPLAY "Processing input..."
-            CALL "InputHandling" USING INPUT-VEKTOR, ABBRUCH, MATRIX,
-            SKIP
+            CALL "InputHandling" USING INPUT-VEKTOR, ABBRUCH, MATRIX
 
             IF ERRORMSG = "FINE" THEN
             DISPLAY "Validating input..."
@@ -53,11 +38,6 @@
 
             DISPLAY "Output..."
             CALL "OutputHandling" USING INPUT-VEKTOR, ABBRUCH, MATRIX
-
-            ADD 1 TO END-DATA
-            ADD 1 TO SKIP
-            DISPLAY "================================="
-           END-PERFORM
 
             STOP RUN.
        END PROGRAM MAIN.
