@@ -40,7 +40,25 @@
 
             WRITE OUTPUT-FILE FROM "=========="
 
-            WRITE OUTPUT-FILE FROM "Matrix:"
+            IF ERRORMSG = "FINE" THEN
+                PERFORM PRINT-OUTPUT
+                ELSE PERFORM PRINT-ERROR
+            END-IF
+
+            WRITE OUTPUT-FILE FROM "=========="
+
+            IF FILE-STATUS NOT = '00'
+               THEN PERFORM HANDLE-ERROR STOP RUN
+            END-IF
+            CLOSE OUTPUTF
+            EXIT PROGRAM
+            .
+
+       PRINT-ERROR.
+           WRITE OUTPUT-FILE FROM ERRORMSG
+           .
+       PRINT-OUTPUT.
+           WRITE OUTPUT-FILE FROM "Matrix:"
             MOVE 1 TO I
             PERFORM UNTIL I > DIM-M
                MOVE 1 TO J
@@ -71,23 +89,18 @@
             MOVE RET-EW TO PRETTY-NUM
             MOVE PRETTY-NUM TO PRINT
             WRITE OUTPUT-FILE FROM PRINT
-            WRITE OUTPUT-FILE FROM "=========="
-
-            IF FILE-STATUS NOT = '00'
-               THEN PERFORM HANDLE-ERROR STOP RUN
-            END-IF
-            CLOSE OUTPUTF
-            STOP RUN
-            .
+           .
 
       * gibt einige fehlermeldungen fuer haeufige file errors aus
        HANDLE-ERROR.
-      *    TODO Mehr Fehler abfangen
            IF FILE-STATUS = '35'
-           THEN DISPLAY "Die Ausgabedatei konnte nicht gefunden werden!"
-           ELSE DISPLAY "Fehler " FILE-STATUS
+           THEN STRING "Die Ausgabedatei konnte nicht gefunden werden!"
+               INTO ERRORMSG
+               DISPLAY ERRORMSG
+           ELSE STRING "Fehler " FILE-STATUS INTO ERRORMSG
+               DISPLAY ERRORMSG
            CLOSE OUTPUTF
-           STOP RUN
+           EXIT PROGRAM
            .
 
        END PROGRAM OutputHandling.

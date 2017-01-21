@@ -28,8 +28,9 @@
             USING CRS-VALS CRS-COLS CRS-ROW-PTR INPUT-VEKTOR ABBRUCH.
        MAIN-PROCEDURE.
             IF DIM-VAL = 0
-                DISPLAY "TODO, evtl. RET-CODE setzen fuer Nullmatrix"
-                MOVE 0.0 TO RET-EW
+                MOVE "Nullmatrix!" TO ERRORMSG
+                DISPLAY ERRORMSG
+                EXIT PROGRAM
             ELSE
                MOVE DIM-I TO DIM-O
                MOVE 1 TO COUNTER-N
@@ -80,14 +81,14 @@
                MOVE EW TO RET-EW
             END-IF
 
-      *     KANN ENTFERNT WERDEN!!!
+      *     TODO KANN ENTFERNT WERDEN!!!
             Display "Debug-Ausgabe in Vectoriteration.cbl"
             Display "Rueckgabe-EW: " RET-EW
             DISPLAY "Differenz der letzten beiden EW: " ABS-DIF
             display "Anzahl Iterationen: " COUNTER-N
             Display "End-Debug-Ausgabe in Vectoriteration.cbl"
 
-            Exit PROGRAM.
+            EXIT PROGRAM.
 
       * Bildet das Skalarprodukt von XI und XK
        DOT.

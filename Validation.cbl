@@ -28,7 +28,7 @@
                     IF ELEM(I,J) NOT = ELEM(J,I) THEN
              STRING "Matrix nicht symmtrisch " I " " J "!" INTO ERRORMSG
                     DISPLAY ERRORMSG
-                    STOP RUN
+                    EXIT PROGRAM
                     END-IF
                     ADD 1 TO J
                 END-PERFORM
@@ -40,7 +40,7 @@
                 STRING "Matrix ist nicht duenn besetzt, nur " PERCENTAGE
                 "% der Elemente sind 0" INTO ERRORMSG
                 DISPLAY ERRORMSG
-                STOP RUN
+                EXIT PROGRAM
             END-IF
             .
        END PROGRAM Validation.

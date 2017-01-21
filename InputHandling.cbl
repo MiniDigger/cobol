@@ -67,6 +67,10 @@
            INSPECT INPUT-LINE TALLYING COUNTER FOR LEADING "x=".
            IF COUNTER > 0 THEN PERFORM FOUND-X MOVE 1 TO OPTION-FOUND
            END-IF
+           MOVE 0 TO COUNTER
+           INSPECT INPUT-LINE TALLYING COUNTER FOR LEADING "==========".
+           IF COUNTER > 0 THEN PERFORM FOUND-NEW MOVE 1 TO OPTION-FOUND
+           END-IF
       * else: eine weitere zeile der input matrix
            IF OPTION-FOUND = 0
              MOVE 1 TO VECTOR-POINTER
@@ -80,7 +84,7 @@
       *          DISPLAY "Error: matrix " COUNTER " " DUMMY " ist nicht"
       *          " numerisch!"
       *          CLOSE INPUTF
-      *          STOP RUN
+      *          EXIT PROGRAM
       *       END-IF  TODO BESSERE FEHLERBEHANDLUNG MATRIX PARSING
              MOVE SPACES TO DUMMY
              ADD 1 TO COUNTER
@@ -97,10 +101,11 @@
            MOVE FUNCTION NUMVAL(INPUT-LINE) TO DIM-I
            MOVE FUNCTION NUMVAL(INPUT-LINE) TO DIM-M
            IF DIM-I = 0 THEN
-               DISPLAY "Error: dim " INPUT-LINE " ist nicht numerisch"
-               " oder ist 0!"
+               STRING "Error:" INPUT-LINE DELIMITED BY SPACE
+               ". dim ist nicht numerisch oder ist 0!" INTO ERRORMSG
+               DISPLAY ERRORMSG
                CLOSE INPUTF
-               STOP RUN
+               EXIT PROGRAM
                ELSE DISPLAY "Found dim " DIM-I
            END-IF
            .
@@ -112,10 +117,11 @@
            INSPECT INPUT-LINE REPLACING LEADING SPACE BY ZEROES
            MOVE FUNCTION NUMVAL(INPUT-LINE) TO N
            IF N = 0 THEN
-               DISPLAY "Error: n " INPUT-LINE " ist nicht numerisch"
-                " oder ist 0!"
+               STRING "Error:" INPUT-LINE DELIMITED BY SPACE
+               ". n ist nicht numerisch oder ist 0!" INTO ERRORMSG
+               DISPLAY ERRORMSG
                CLOSE INPUTF
-               STOP RUN
+               EXIT PROGRAM
            ELSE DISPLAY "Found n " N
            END-IF
            .
@@ -127,10 +133,11 @@
            INSPECT INPUT-LINE REPLACING LEADING SPACE BY ZEROES
            MOVE FUNCTION NUMVAL(INPUT-LINE) TO EPSILON
            IF EPSILON = 0 THEN
-               DISPLAY "Error: e " INPUT-LINE " ist nicht numerisch"
-               " oder ist 0!"
+               STRING "Error:" INPUT-LINE DELIMITED BY SPACE
+               ". e ist nicht numerisch oder ist 0!" INTO ERRORMSG
+               DISPLAY ERRORMSG
                CLOSE INPUTF
-               STOP RUN
+               EXIT PROGRAM
            ELSE DISPLAY "Found e " EPSILON
            END-IF
            .
@@ -155,19 +162,27 @@
       *          DISPLAY "Error: xi " COUNTER " " DUMMY " ist nicht"
       *          " numerisch!"
       *          CLOSE INPUTF
-      *          STOP RUN
+      *          EXIT PROGRAM
       *       END-IF  TODO BESSERE FEHLERBEHANDLUNG XI PARSING
              MOVE SPACES TO DUMMY
              ADD 1 TO COUNTER
            END-PERFORM
            .
+      * resetted alles fuer die naeste runde
+       FOUND-NEW.
+           DISPLAY "Lese naesten input..."
+      * TODO complete the loop
+           MOVE 1 TO FILE-EOF
+           .
       * gibt einige fehlermeldungen fuer haeufige file errors aus
        HANDLE-ERROR.
-      *    TODO Mehr Fehler abfangen
            IF FILE-STATUS = '35'
-           THEN DISPLAY "Die Eingabedatei konnte nicht gefunden werden!"
-           ELSE DISPLAY "Fehler " FILE-STATUS
+           THEN STRING "Die Eingabedatei konnte nicht gefunden werden!"
+               INTO ERRORMSG
+               DISPLAY ERRORMSG
+           ELSE STRING "Fehler " FILE-STATUS INTO ERRORMSG
+               DISPLAY ERRORMSG
            CLOSE INPUTF
-           STOP RUN
+           EXIT PROGRAM
            .
        END PROGRAM InputHandling.
