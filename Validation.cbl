@@ -42,5 +42,10 @@
                 DISPLAY ERRORMSG
                 EXIT PROGRAM
             END-IF
+
+            IF PERCENTAGE = 100 THEN
+                STRING "Nullmatrix!" INTO ERRORMSG
+                DISPLAY ERRORMSG
+                EXIT PROGRAM
             .
        END PROGRAM Validation.

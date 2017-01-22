@@ -14,6 +14,7 @@
            COPY "InputMatrix.cpy".
        PROCEDURE DIVISION.
        MAIN-PROCEDURE.
+            DISPLAY "============================================="
             MOVE "FINE" TO ERRORMSG
 
             DISPLAY "Processing input..."
@@ -39,5 +40,6 @@
             DISPLAY "Output..."
             CALL "OutputHandling" USING INPUT-VEKTOR, ABBRUCH, MATRIX
 
+            DISPLAY "============================================="
             STOP RUN.
        END PROGRAM MAIN.

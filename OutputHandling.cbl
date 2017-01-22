@@ -33,7 +33,7 @@
            COPY "VectorDim.cpy".
        PROCEDURE DIVISION USING INPUT-VEKTOR ABBRUCH MATRIX.
        MAIN-PROCEDURE.
-            OPEN OUTPUT OUTPUTF
+            OPEN EXTEND OUTPUTF
             IF FILE-STATUS NOT = '00'
                THEN PERFORM HANDLE-ERROR STOP RUN
             END-IF
