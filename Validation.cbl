@@ -26,7 +26,7 @@
                     END-IF
 
                     IF ELEM(I,J) NOT = ELEM(J,I) THEN
-             STRING "Matrix nicht symmtrisch " I " " J "!" INTO ERRORMSG
+            STRING "Matrix nicht symmetrisch " I " " J "!" INTO ERRORMSG
                     DISPLAY ERRORMSG
                     EXIT PROGRAM
                     END-IF

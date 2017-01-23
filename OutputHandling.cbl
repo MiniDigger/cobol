@@ -70,7 +70,7 @@
                   ADD 1 TO J
                END-PERFORM
                ADD 1 TO I
-            WRITE OUTPUT-FILE FROM PRINT
+               WRITE OUTPUT-FILE FROM PRINT
             END-PERFORM
 
             WRITE OUTPUT-FILE FROM "Start Vektor:"

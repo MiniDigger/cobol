@@ -67,10 +67,6 @@
            INSPECT INPUT-LINE TALLYING COUNTER FOR LEADING "x=".
            IF COUNTER > 0 THEN PERFORM FOUND-X MOVE 1 TO OPTION-FOUND
            END-IF
-           MOVE 0 TO COUNTER
-           INSPECT INPUT-LINE TALLYING COUNTER FOR LEADING "==========".
-           IF COUNTER > 0 THEN PERFORM FOUND-NEW MOVE 1 TO OPTION-FOUND
-           END-IF
       * else: eine weitere zeile der input matrix
            IF OPTION-FOUND = 0
              MOVE 1 TO VECTOR-POINTER
@@ -167,12 +163,6 @@
              MOVE SPACES TO DUMMY
              ADD 1 TO COUNTER
            END-PERFORM
-           .
-      * resetted alles fuer die naeste runde
-       FOUND-NEW.
-           DISPLAY "Lese naesten input..."
-      * TODO complete the loop
-           MOVE 1 TO FILE-EOF
            .
       * gibt einige fehlermeldungen fuer haeufige file errors aus
        HANDLE-ERROR.

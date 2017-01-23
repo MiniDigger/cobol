@@ -1,7 +1,6 @@
       ******************************************************************
-      * Author:
-      * Date:
-      * Purpose:
+      * Author: Martin Benndorf
+      * Date: 06.11.2016
       * Tectonics: cobc
       ******************************************************************
        IDENTIFICATION DIVISION.

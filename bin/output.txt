@@ -19,3 +19,6 @@ Erwartungswert:
 ==========
 Matrix nicht symmtrisch 0003 0005!
 ==========
+==========
+Matrix nicht symmtrisch 0003 0005!
+==========

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<root xmlns:nsd="http://structorizer.fisch.lu/" version="3.25-11" preRepeat="jusqu'à " postFor="à" preReturn="return" postForIn=" en " preWhile="tant que " output="écrire" input="lire " preFor="pour " preExit="exit" preLeave="leave" ignoreCase="true" preForIn="pour " stepFor=", pas = " text="&#34;Main&#34;" comment="&#34;&#34;" color="ffffff" type="program" style="nice">
+<root xmlns:nsd="http://structorizer.fisch.lu/" version="3.25-11" preRepeat="jusqu'à " postFor="à" preReturn="return" postForIn=" en " preWhile="tant que " output="écrire" input="lire " preFor="pour " preExit="exit" preLeave="leave" ignoreCase="true" preForIn="pour " stepFor=", pas = " text="&#34;Main&#34;" comment="" color="ffffff" type="program" style="nice">
 	<children>
-		<call text="&#34;InputHandeling mit den Parametern Input-Vekor, Abbruch und Matrix aufrufen&#34;" comment="&#34;&#34;" color="ffffff" disabled="0"></call>
-		<call text="&#34;CompressedRowStorge mit den Parametern CRS-Vals, CRS-Cols, CRS-Row-Pointer, Input-Vekor, Abbruch und Matrix aufrufen&#34;" comment="&#34;&#34;" color="ffffff" disabled="0"></call>
-		<call text="&#34;Vectoriteration mit den Parametern CRS-Vals, CRS-Cols, CRS-Row-Pointer, Input-Vekor und Abbruch aufrufen&#34;" comment="&#34;&#34;" color="ffffff" disabled="0"></call>
-		<call text="&#34;OutputHandeling mit den Parametern Abbruch aufrufen&#34;" comment="&#34;&#34;" color="ffffff" disabled="0"></call>
+		<call text="&#34;InputHandeling mit den Parametern Input-Vekor, Abbruch und Matrix aufrufen&#34;" comment="" color="ffffff" disabled="0"></call>
+		<call text="&#34;Validation mit den Parametern InputVektor und Abbruch aufrufen&#34;" comment="&#34;&#34;" color="ffffff" disabled="0"></call>
+		<call text="&#34;CompressedRowStorge mit den Parametern CRS-Vals, CRS-Cols, CRS-Row-Pointer und Matrix aufrufen&#34;" comment="&#34;&#34;" color="ffffff" disabled="0"></call>
+		<call text="&#34;Vectoriteration mit den Parametern CRS-Vals, CRS-Cols, CRS-Row-Pointer, Input-Vekor und Abbruch aufrufen&#34;" comment="" color="ffffff" disabled="0"></call>
+		<call text="&#34;OutputHandeling mit den Parametern InputVektor, Abbruch und Matrix aufrufen&#34;" comment="&#34;&#34;" color="ffffff" disabled="0"></call>
 	</children>
 </root>
